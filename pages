@@ -1,0 +1,34 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+export default function Welcome() {
+  const navigate = useNavigate();
+
+  return (
+    <div className="h-full flex flex-col justify-end p-5 pb-10 bg-white">
+      <div className="mb-8">
+        <h1 className="text-[28px] font-bold text-[#1D2226] tracking-tight leading-tight">
+          Welcome to PopX
+        </h1>
+        <p className="text-[#6C7278] text-[15px] mt-2 max-w-[260px] leading-relaxed">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        </p>
+      </div>
+
+      <div className="space-y-3">
+        <button
+          onClick={() => navigate('/register')}
+          className="w-full bg-[#6C25FF] text-white font-medium py-3.5 rounded-lg text-[15px] shadow-sm transition hover:bg-opacity-90 active:scale-[0.99]"
+        >
+          Create Account
+        </button>
+        <button
+          onClick={() => navigate('/login')}
+          className="w-full bg-[#6C25FF]/20 text-[#1D2226] font-semibold py-3.5 rounded-lg text-[15px] transition hover:bg-opacity-30 active:scale-[0.99]"
+        >
+          Already Registered? Login
+        </button>
+      </div>
+    </div>
+  );
+}
