@@ -32,3 +32,181 @@ export default function Welcome() {
     </div>
   );
 }
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+export default function Login() {
+  const navigate = useNavigate();
+
+  return (
+    <div className="p-5 flex flex-col justify-between h-full bg-white">
+      <div>
+        <h1 className="text-[28px] font-bold text-[#1D2226] mt-4 leading-tight">
+          Signin to your<br />PopX account
+        </h1>
+        <p className="text-[#6C7278] text-[15px] mt-2 mb-8">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        </p>
+
+        {/* Input fields with overlapping labels */}
+        <div className="space-y-6">
+          <div className="relative">
+            <label className="absolute -top-2.5 left-3 bg-white px-1 text-xs font-medium text-[#6C25FF]">
+              Email Address
+            </label>
+            <input
+              type="email"
+              placeholder="Enter email address"
+              className="w-full border border-gray-300 rounded-lg px-3.5 py-3.5 text-sm text-gray-800 focus:outline-none focus:border-[#6C25FF] placeholder-gray-400"
+            />
+          </div>
+
+          <div className="relative">
+            <label className="absolute -top-2.5 left-3 bg-white px-1 text-xs font-medium text-[#6C25FF]">
+              Password
+            </label>
+            <input
+              type="password"
+              placeholder="Enter password"
+              className="w-full border border-gray-300 rounded-lg px-3.5 py-3.5 text-sm text-gray-800 focus:outline-none focus:border-[#6C25FF] placeholder-gray-400"
+            />
+          </div>
+        </div>
+
+        <button
+          onClick={() => navigate('/profile')}
+          className="w-full bg-[#CBC3E3] text-white font-medium py-3.5 rounded-lg text-[15px] mt-6 transition hover:bg-[#6C25FF]"
+        >
+          Login
+        </button>
+      </div>
+    </div>
+  );
+}
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+export default function Register() {
+  const navigate = useNavigate();
+  const [isAgency, setIsAgency] = useState('yes');
+
+  const fields = [
+    { label: 'Full Name', placeholder: 'Marry Doe', required: true },
+    { label: 'Phone number', placeholder: 'Marry Doe', required: true },
+    { label: 'Email address', placeholder: 'Marry Doe', required: true },
+    { label: 'Password', placeholder: 'Marry Doe', required: true },
+    { label: 'Company name', placeholder: 'Marry Doe', required: false },
+  ];
+
+  return (
+    <div className="p-5 flex flex-col justify-between h-full bg-white relative">
+      <div className="pb-24">
+        <h1 className="text-[28px] font-bold text-[#1D2226] mt-4 leading-tight mb-8">
+          Create your<br />PopX account
+        </h1>
+
+        <div className="space-y-6">
+          {fields.map((field, idx) => (
+            <div key={idx} className="relative">
+              <label className="absolute -top-2.5 left-3 bg-white px-1 text-xs font-medium text-[#6C25FF]">
+                {field.label}
+                {field.required && <span className="text-red-500">*</span>}
+              </label>
+              <input
+                type="text"
+                placeholder={field.placeholder}
+                className="w-full border border-gray-300 rounded-lg px-3.5 py-3 text-sm text-[#1D2226] focus:outline-none focus:border-[#6C25FF]"
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Radio Option */}
+        <div className="mt-5">
+          <label className="text-[14px] font-medium text-[#1D2226]">
+            Are you an Agency?<span className="text-red-500">*</span>
+          </label>
+          <div className="flex items-center space-x-6 mt-2">
+            <label className="flex items-center space-x-2 text-sm cursor-pointer">
+              <input
+                type="radio"
+                name="agency"
+                checked={isAgency === 'yes'}
+                onChange={() => setIsAgency('yes')}
+                className="w-4 h-4 text-[#6C25FF] accent-[#6C25FF] focus:ring-0"
+              />
+              <span className="text-sm font-medium text-gray-800">Yes</span>
+            </label>
+            <label className="flex items-center space-x-2 text-sm cursor-pointer">
+              <input
+                type="radio"
+                name="agency"
+                checked={isAgency === 'no'}
+                onChange={() => setIsAgency('no')}
+                className="w-4 h-4 text-[#6C25FF] accent-[#6C25FF] focus:ring-0"
+              />
+              <span className="text-sm font-medium text-gray-800">No</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      {/* Persistent Sticky Bottom Button layout matching image */}
+      <div className="absolute bottom-5 left-5 right-5">
+        <button
+          onClick={() => navigate('/profile')}
+          className="w-full bg-[#6C25FF] text-white font-medium py-3.5 rounded-lg text-[15px]"
+        >
+          Create Account
+        </button>
+      </div>
+    </div>
+  );
+}
+import React from 'react';
+
+export default function Profile() {
+  return (
+    <div className="h-full flex flex-col bg-[#F8F9FA]">
+      {/* Header View */}
+      <div className="bg-white border-b border-gray-200 px-5 py-4">
+        <h1 className="text-[18px] font-semibold text-[#1D2226]">Account Settings</h1>
+      </div>
+
+      {/* User Info Content Block */}
+      <div className="p-5 flex-1 bg-white">
+        <div className="flex items-start space-x-4 border-b border-dashed border-gray-300 pb-6">
+          
+          {/* Avatar frame with camera badge */}
+          <div className="relative">
+            <img
+              src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150"
+              alt="Marry Doe Profile"
+              className="w-[76px] h-[76px] rounded-full object-cover"
+            />
+            <div className="absolute bottom-0 right-0 bg-[#6C25FF] p-1.5 rounded-full border border-white shadow-sm flex items-center justify-center cursor-pointer">
+              <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                <circle cx="12" cy="13" r="3" />
+              </svg>
+            </div>
+          </div>
+
+          {/* Metadata */}
+          <div className="pt-1">
+            <h2 className="text-[16px] font-bold text-[#1D2226]">Marry Doe</h2>
+            <p className="text-[13px] text-gray-500 mt-0.5">Marry@Gmail.Com</p>
+          </div>
+        </div>
+
+        {/* Dynamic Bio Paragraph Block */}
+        <p className="text-[13px] leading-[22px] text-[#1D2226] mt-5">
+          Lorem Ipsum Dolor Sit Amer, Consetetur Sadipscing Elitr, Sed Diam Nonumy Eirmod Tempor Invidunt Ut Labore Et Dolore Magna Aliquyam Erat, Sed Diam
+        </p>
+      </div>
+
+      {/* Blank dashed content container mirroring image layout structure */}
+      <div className="bg-[#F8F9FA] h-[340px] border-t border-dashed border-gray-200"></div>
+    </div>
+  );
+}
