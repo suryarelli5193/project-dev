@@ -1,3 +1,18 @@
+npx create-react-app popx-assignment
+cd popx-assignment
+npm install react-router-dom
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Optional: Hide scrollbar track for a cleaner mobile app look */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
